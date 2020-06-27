@@ -16,7 +16,17 @@ const galleryRoutes = require("./routs/gallery"),
     commentRoutes = require("./routs/comment"),
     indexRoutes = require("./routs/index");
 
-mongoose.connect('mongodb://localhost:27017/gallery-v11', { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+const uri = process.env.GALLERYDB || 'mongodb://localhost:27017/gallery-v11';
+mongoose
+    .connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    .then(() => console.log('Database Connected'))
+    .catch(err => console.log(err));
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -53,5 +63,5 @@ app.use(indexRoutes);
 const port = process.env.port || 3000;
 app.listen(port, () => {
     console.log(port);
-    console.log("the camp is  on !!");
+    console.log("the journy is  on !!");
 });
