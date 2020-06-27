@@ -1,0 +1,62 @@
+<%- include ('../partials/header'); -%>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+                    list group item</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">
+                    ist group item</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+                    list group item</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-info">
+                    list group item</a>
+
+            </div>
+        </div>
+        <div class="col col-md-9">
+            <div class="img-thumbnail" id="showthumb">
+                <img class="img-responsive " src="<%= pics.image %>">
+                <div class="caption-full">
+                    <h4><%= pics.name %></h4>
+                    <h6><%= pics.description %></h6>
+                    <p><em>created By</em> <strong><%= pics.author.username %></strong></p>
+
+                    <%if(currentUser && pics.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-sm btn-warning" href="/gallery/<%= pics._id %>/edit">EDIT</a>
+                    <form id="delete-btn" action="/gallery/<%= pics._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">DELETE</button>
+                    </form>
+                    <% }%>
+                </div>
+            </div>
+            <br>
+            <div class="card card-body bg-light">
+                <div class="text-right">
+                    <a href="/gallery/<%= pics._id %>/comments/new" class="btn btn-primary">add acomment</a>
+                </div>
+                <br>
+                <% pics.comments.forEach(comment=>{ %>
+                <div class="row">
+                    <div class="col clo-md-12">
+                        <strong><%= comment.author.username %></strong>
+                        <span class="float-right">1 day ago</span>
+                        <p> <%= comment.text %></p>
+                        <%if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-sm btn-warning"
+                            href="/gallery/<%= pics._id %>/comments/<%= comment._id %>/edit">EDIT</a>
+                        <form id="delete-btn"
+                            action="/gallery/<%= pics._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">DELETE</button>
+                            <% }%>
+                        </form>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ('../partials/footer') -%>

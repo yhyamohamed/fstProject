@@ -1,0 +1,25 @@
+<%- include ('../partials/header'); -%>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center;">EDIT <%= pics.name %></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/gallery/<%= pics._id %>?_method=put" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= pics.name %>" name="pics[name]">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= pics.image %>" name="pics[image]">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= pics.description %>" name="pics[description]">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-large btn-block">submit</button>
+                </div>
+            </form>
+            <a href="/gallery">back </a>
+        </div>
+    </div>
+</div>
+
+<%- include ('../partials/footer') -%>
