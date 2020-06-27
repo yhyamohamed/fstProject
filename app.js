@@ -61,7 +61,7 @@ app.use(indexRoutes);
 
 
 const port = process.env.port || 5000;
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(port);
     console.log("the journy is  on !!");
 });
