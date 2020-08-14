@@ -5,6 +5,11 @@
 #showthumb{
     padding: 0;
 }
+#displayCard{
+    display:flex;
+    flex-wrap:wrap;
+    padding: 5px;
+}
 .img-thumbnail .caption-full {
     padding: 9px;
    

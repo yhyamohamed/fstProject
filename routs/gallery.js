@@ -47,8 +47,9 @@ router.get("/:id", (req, res) => {
     // gallery.findById(req.params.id, (err, selecteditem) => {
     //to find the selected pic comments
     gallery.findById(req.params.id).populate("comments").exec((err, selecteditem) => {
-        if (err) {
-            console.log(err);
+        if (err||!selecteditem) {
+            req.flash("error", "image not found");
+            res.redirect("back");
         } else {
             res.render("gallery/show", { pics: selecteditem });
         }

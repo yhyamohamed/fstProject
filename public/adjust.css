@@ -1,6 +1,5 @@
 .navbar-light{
     background:#2c3e50;
-    
 }
 .navbar-light .navbar-brand{
     
@@ -25,13 +24,8 @@ body{
 .jumbotron{
     color:#2c3e50;
 }
-#signature{
-    z-index: 1;
-    position:fixed ;
-    /* left: 0; */
-    bottom: 0;
-    font-family: 'Lato', sans-serif;
-}
+
+
 html{
     height: 100%;
 }

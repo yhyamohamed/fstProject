@@ -5,7 +5,8 @@ module.exports = {
     isHeOwnIt: (req, res, next) => {
         if (req.isAuthenticated()) {
             gallery.findById(req.params.id, (err, selecteditem) => {
-                if (err) {
+                if (err||!selecteditem) {
+                    req.flash("error", "image not found");
                     res.redirect("back");
                 } else {
                     //does he own the post after find it &compare ids
